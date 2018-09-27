@@ -78,7 +78,7 @@ class API(object):
 
     def get_platforms_list(self):
         platforms_list = []
-        GET_PLATFORMS_LIST_ENDPOINT = 'http://thegamesdb.net/api/GetPlatformsList.php'
+        GET_PLATFORMS_LIST_ENDPOINT = 'http://legacy.thegamesdb.net/api/GetPlatformsList.php'
         xml_response = self.make_call(GET_PLATFORMS_LIST_ENDPOINT)
         for element in xml_response.iter(tag="Platform"):
             for subelement in element:
@@ -94,7 +94,7 @@ class API(object):
 
     def get_platform(self, id):
         # TODO Add support for fetching platform images under the <Images> element
-        GET_PLATFORM_ENDPOINT = 'http://thegamesdb.net/api/GetPlatform.php?'
+        GET_PLATFORM_ENDPOINT = 'http://legacy.thegamesdb.net/api/GetPlatform.php?'
         query_args = {'id': id}
         xml_response = self.make_call(GET_PLATFORM_ENDPOINT, query_args)
         # TODO These are all optional fields.  There's probably a better way to handle this than setting them all to None.
@@ -154,7 +154,7 @@ class API(object):
                         overview=platform_overview)
 
     def get_platform_games(self, platform_id):
-        GET_PLATFORM_GAMES_LIST_ENDPOINT = 'http://thegamesdb.net/api/GetPlatformGames.php?'
+        GET_PLATFORM_GAMES_LIST_ENDPOINT = 'http://legacy.thegamesdb.net/api/GetPlatformGames.php?'
         query_args = {'platform': platform_id}
         xml_response = self.make_call(GET_PLATFORM_GAMES_LIST_ENDPOINT, query_args)
         platform_games_list = []
@@ -184,7 +184,7 @@ class API(object):
                 query_args['name'] = name
             if platform is not None:
                 query_args['platform'] = platform
-        GET_GAME_ENDPOINT = 'http://thegamesdb.net/api/GetGame.php?'
+        GET_GAME_ENDPOINT = 'http://legacy.thegamesdb.net/api/GetGame.php?'
         xml_response = self.make_call(GET_GAME_ENDPOINT, query_args)
         games_list = []
         game_base_img_url = None
@@ -259,7 +259,7 @@ class API(object):
         if genre is not None:
             query_args['genre'] = genre
         games_list = []
-        GET_GAMES_LIST_ENDPOINT = 'http://thegamesdb.net/api/GetGamesList.php?'
+        GET_GAMES_LIST_ENDPOINT = 'http://legacy.thegamesdb.net/api/GetGamesList.php?'
         xml_response = self.make_call(GET_GAMES_LIST_ENDPOINT, query_args)
         for element in xml_response.iter(tag="Game"):
             game_release_date = None
